@@ -21,6 +21,7 @@ public class First {
         int[] input = {0,1,2,4,5,6,7};
         System.out.println(first.showMinimum(input));
     }
+    //O(n) = N in this algorithm, since I have used the feature of being sorted rotated
     public int showMinimum(int[] A)
     {
         for(int i = 0; i < A.length-1; i++)
