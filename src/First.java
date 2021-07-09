@@ -17,6 +17,7 @@ public class First {
     {
         First first = new First();
         //[] input = {4,5,6,7,0,1,2};
+        //int[] input = {1,2,4,5,6,7,0};
         int[] input = {0,1,2,4,5,6,7};
         System.out.println(first.showMinimum(input));
     }
