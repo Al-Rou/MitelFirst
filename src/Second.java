@@ -31,10 +31,12 @@ public class Second {
     public static void main(String[] args)
     {
         Second second = new Second();
-        int[] input = {2,7,11,15};
-        int[] res = second.showIndex(input, 9);
+        //int[] input = {2,7,11,15};
+        int[] input = {3,2,100,20,35,4};
+        int[] res = second.showIndex(input, 6);
         System.out.println("The index "+ res[0] + " and index " + res[1]);
     }
+    //This
     public int[] showIndex(int[] A, int target)
     {
         int remain = 0;
@@ -42,28 +44,21 @@ public class Second {
         for(int i = 0; i < A.length; i++)
         {
             remain = target - A[i];
-            /*if(remain <= 0)
+            for(int j = 0; j < A.length; j++)
             {
-                break;
-            }*/
-            //else
-            //{
-                for(int j = 0; j < A.length; j++)
+                if(j == i)
                 {
-                    if(j == i)
+                    continue;
+                }
+                else {
+                    if(A[j] == remain)
                     {
-                        continue;
-                    }
-                    else {
-                        if(A[j] == remain)
-                        {
-                            result[0] = i;
-                            result[1] = j;
-                            return result;
-                        }
+                        result[0] = i;
+                        result[1] = j;
+                        return result;
                     }
                 }
-            //}
+            }
         }
         return result;
     }
