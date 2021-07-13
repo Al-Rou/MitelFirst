@@ -34,10 +34,67 @@ public class Second {
         //int[] input = {2,7,11,15};
         int[] input = {3,2,100,20,35,4};
         int[] res = second.showIndex(input, 6);
-        System.out.println("The index "+ res[0] + " and index " + res[1]);
+        if((res[0] != 0) || (res[1] != 0)) {
+            System.out.println("The index " + res[0] + " and index " + res[1]);
+        }
     }
-    //This
+    //This is a better algorithm, whose complexity is the complexity of the chosen sorting algorithm!
     public int[] showIndex(int[] A, int target)
+    {
+        int lo = 0;
+        int hi = A.length-1;
+        int[] result = new int[2];
+        int[] sortedArray = new int[A.length];
+        for(int i = 0; i < A.length; i++)
+        {
+            sortedArray[i] = A[i];
+        }
+        //First, sorting the array
+        MergeSort mergeSort = new MergeSort();
+        sortedArray = mergeSort.mergeSort(sortedArray,lo,hi);
+        int firstIndex = 0;
+        int secondIndex = 0;
+
+        //Now, this loop finds the answer if exists!
+        while (hi > lo) {
+            if ((sortedArray[lo] + sortedArray[hi]) == target) {
+                firstIndex = lo;
+                secondIndex = hi;
+                break;
+            } else if ((sortedArray[lo] + sortedArray[hi]) < target) {
+                lo++;
+            } else {
+                hi--;
+            }
+        }
+        if((firstIndex != 0) || (secondIndex != 0))
+        {
+            for(int i = 0; i < A.length; i++)
+            {
+                if(sortedArray[firstIndex] == A[i])
+                {
+                    result[0] = i;
+                    break;
+                }
+            }
+            for(int i = 0; i < A.length; i++)
+            {
+                if(sortedArray[secondIndex] == A[i])
+                {
+                    result[1] = i;
+                    break;
+                }
+            }
+            return result;
+        }
+        else {
+            System.out.println("There is no pair whose summation is equal to the target!");
+            return result;
+        }
+    }
+
+    //The complexity is O(N^2)
+    /*public int[] showIndex(int[] A, int target)
     {
         int remain = 0;
         int[] result = new int[2];
@@ -61,5 +118,5 @@ public class Second {
             }
         }
         return result;
-    }
+    }*/
 }
