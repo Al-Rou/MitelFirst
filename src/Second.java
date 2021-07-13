@@ -26,6 +26,7 @@ Output: [0,1]
  */
 
 
+import java.util.HashSet;
 
 public class Second {
     public static void main(String[] args)
@@ -33,10 +34,43 @@ public class Second {
         Second second = new Second();
         //int[] input = {2,7,11,15};
         int[] input = {3,2,100,20,35,4};
-        int[] res = second.showIndex(input, 6);
+        //int[] res = second.showIndex(input, 6);
+        int[] res = second.showIndexUsingHashSet(input, 6);
         if((res[0] != 0) || (res[1] != 0)) {
             System.out.println("The index " + res[0] + " and index " + res[1]);
         }
+    }
+    //This is another algorithm with the help of a data structure
+    public int[] showIndexUsingHashSet(int[] A, int target)
+    {
+        int[] result = new int[2];
+        HashSet<Integer> set = new HashSet<>();
+        set.add(A[0]);
+        int remain = 0;
+        //int secondIndex = 0;
+        for(int i = 1; i < A.length; i++)
+        {
+            remain = target - A[i];
+            if(set.contains(remain)) {
+                result[0] = i;
+                break;
+            }
+            else {
+                set.add(A[i]);
+            }
+        }
+        for(int i = 0; i < A.length; i++)
+        {
+            if(A[i] == remain)
+            {
+                result[1] = i;
+            }
+        }
+        if((result[0] == 0) && (result[1] == 0))
+        {
+            System.out.println("There is no pair in the array!");
+        }
+        return result;
     }
     //This is a better algorithm, whose complexity is the complexity of the chosen sorting algorithm!
     public int[] showIndex(int[] A, int target)
